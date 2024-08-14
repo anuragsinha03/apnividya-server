@@ -87,7 +87,7 @@ app.listen(PORT, () => {
 const httpServer = createServer().listen(3002);
 const io = new Server(httpServer, {
 	cors: {
-		// origin: "http://localhost:3000", local instance
+		// origin: "http://localhost:3000", //local instance
 		origin: "https://apnividya-beta.vercel.app/", //Vercel instance
 	},
 });
