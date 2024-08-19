@@ -78,13 +78,7 @@ app.get(`${CHAT_PATH}get-chats-data`, getChatDataController);
 app.get(`${CHAT_PATH}get-notification-data`, getNotificationDataController);
 app.put(`${AUTH_PATH}reset-password`, validateChangePasswordTokenController);
 
-// Starting the server
-app.listen(PORT, () => {
-	// eslint-disable-next-line no-console
-	console.log(`The server is running on ${PORT}`);
-});
-
-const httpServer = createServer().listen(3002);
+const httpServer = createServer(app);
 const io = new Server(httpServer, {
 	cors: {
 		// origin: "http://localhost:3000", //local instance
@@ -106,4 +100,10 @@ io.on("connection", socket => {
 			socket.to(sendUserSocket).emit("msg-recieve", data.message);
 		}
 	});
+});
+
+// Starting the server
+httpServer.listen(PORT, () => {
+	// eslint-disable-next-line no-console
+	console.log(`The server is running on ${PORT}`);
 });
