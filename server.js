@@ -83,6 +83,8 @@ const io = new Server(httpServer, {
 	cors: {
 		// origin: "http://localhost:3000", //local instance
 		origin: "https://apnividya-beta.vercel.app/", //Vercel instance
+		methods: ["GET", "POST"],
+		credentials: true,
 	},
 });
 global.onlineUsers = new Map();
